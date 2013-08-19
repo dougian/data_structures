@@ -2,6 +2,7 @@ import time
 import os
 import bookservice
 import trie
+
 b = bookservice.Books()
 b.load_books("books.csv")
 start1 = time.time()
@@ -13,7 +14,7 @@ print("creating trie....")
 
 for book in b.arr:
     t.add(book.title,book)
-    print(book)
+#    print(book)
 print("trie is ready, LET'S TEST!")
 
 

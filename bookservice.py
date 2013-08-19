@@ -36,6 +36,8 @@ class Books(object):
 
                     if n == 0:
                         continue
+                    if n == __booksloaded__:
+                        break
                     id = row[0].strip('"')
                     title = row[1].strip('"')
                     iter = 0
@@ -197,4 +199,4 @@ class Book(object):
 
 
 __defaultfile__   = ""
-
+__booksloaded__ = 1500
