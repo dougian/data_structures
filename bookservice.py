@@ -4,7 +4,8 @@ import csv
 
 
 class Books(object):
-    """Books contains a list of all the books loaded"""
+    """Books contains a list of all the books loaded.
+       It also contains functions to add, delete, search books via multiple ways."""
 
     def __init__(self):
         super(Books, self).__init__()
@@ -12,7 +13,7 @@ class Books(object):
         self.arrsorted = []
 
     def load_books(self, file):
-        ''''Loads the array with books given a filename.
+        '''Loads the array with books given a filename.
            Returns True if successfull, False otherwise.'''
 
         if not os.path.exists(file):
@@ -61,7 +62,7 @@ class Books(object):
 
     def save_books(file):
         '''Exports the array of books as a json file for later use.
-            Returns True if successful, False if not'''
+            Returns True if successful, False if not.'''
         try:
             with open(file, 'w') as f:
                 json.dump(self.arr, f)
@@ -71,6 +72,8 @@ class Books(object):
             return False
 
     def add_book(self):
+        '''An interractive way to add a new book to the list.'''
+
         id = input("Please enter the id")
         title = input("Please enter the title of the book")
         descr = input("Now enter the description of the book")
@@ -88,6 +91,7 @@ class Books(object):
 
         try:
             self.arr.append(Book(name, surname, descr, authors))
+            self.arrsorted = sorted(self.arr, key = lambda x: x.id, reverse = False)
             return True
         except:
             print("Couldn't add the book to the list")
@@ -118,13 +122,16 @@ class Books(object):
                 print(book)
 
     def disp_surname(self, surname):
-        """Print a book based on the surname of the author"""
+        """Print a book based on the surname of the author."""
         for book in self.arr:
             surnames = [a.surname for a in book.authors]
             if surname in surnames:
                 print(book)
 
     def binary_search(self, x, a = None, lo=0, hi=None):
+        """Search for a book based on id.
+        Implements binary search, which should have an average complexity of log(n)."""
+
         if hi is None:
             a = self.arrsorted
             hi = len(a)
@@ -144,6 +151,7 @@ class Books(object):
 
 class Author(object):
         """Author has a name and a surname for each author"""
+
         def __init__(self, name, surname):
             super(Author, self).__init__()
             self.firstname = name
@@ -154,7 +162,8 @@ class Author(object):
 
 
 class Book(object):
-                    """Book has an id, title, description and some Authors."""
+                    """Book has an id, title, description and some Authors.
+                    Each book can also print itself. """
                     authors = []
                     def __init__(self, id, title, summary, authors):
                         super(Book, self).__init__()
