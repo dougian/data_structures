@@ -1,4 +1,5 @@
 import json
+from bisect import bisect_left
 import os
 import csv
 
@@ -113,7 +114,7 @@ class Books(object):
         """Print a book based on id."""
         for book in self.arr:
             if book.id == id:
-                print(book)
+                return book
 
     def disp_title(self, title):
         """Print a book that has the title given in title."""
@@ -138,15 +139,13 @@ class Books(object):
         while lo < hi:
             mid = (lo+hi)//2
             midval = a[mid]
-            if midval < x:
+            if midval.id < x:
                 lo = mid+1
-            elif midval > x:
+            elif midval.id > x:
                 hi = mid
             else:
-                return mid
-            return -1
-
-
+                return a[mid]
+        return -1
 
 
 class Author(object):
@@ -177,5 +176,25 @@ class Book(object):
                         temp  = " Id : {}".format( self.id ) +  " " + "Title : " + self.title + " " + "Authors : "
                         temp += ''.join(auth)
                         return temp
+
+                    def __lt__(self, other):
+                        if type(other) == Book:
+                            return self.id < other.id
+                        elif type(other) == str:
+                            return self.id < other
+                        else:
+                            raise Exception("don't know how to compare")
+
+                    def __gt__(self, other):
+                        if type(other) == Book:
+                            return self.id > other.id
+                        elif type(other) == str:
+                            return self.id > other
+                        else:
+                            raise Exception("don't know how to compare")
+
+
+
+
 __defaultfile__   = ""
 
