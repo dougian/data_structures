@@ -55,3 +55,23 @@ class Trie:
                 yield node.items
             else:
                 yield node
+
+    def build_tree(self, arr):
+        for book in arr:
+            self.add(book.title, book)
+
+    def build_authors(self, arr):
+        s = []  #a list of surname-book tuples
+        for b in arr:
+            for a in b.authors:
+                s.append((a.lastname, b))
+        d = defaultdict(list)
+
+        for k, v in s:
+            d[k].append(v)
+
+        for surname, value in d.items():
+            self.add(surname, value)
+
+
+

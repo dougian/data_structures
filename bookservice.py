@@ -125,11 +125,16 @@ class Books(object):
                 return book
 
     def disp_surname(self, surname):
-        """Print a book based on the surname of the author."""
+        """Returns a list of books based on the surname of the author.
+         Will return ALL the books created by the author, whether alone
+         or collaborative."""
+
+        l = []
         for book in self.arr:
-            surnames = [a.surname for a in book.authors]
+            surnames = [a.lastname for a in book.authors]
             if surname in surnames:
-                return book
+                l.append(book)
+        return l
 
     def binary_search(self, x, a = None, lo=0, hi=None):
         """Search for a book based on id.
@@ -159,7 +164,7 @@ class Author(object):
             self.lastname = surname
 
         def __str__(self):
-            return self.firstname + " " + self.lastname
+            return "Name:" + self.firstname + " Surname " + self.lastname
 
 
 class Book(object):
