@@ -13,7 +13,7 @@ class Books(object):
         self.arr = []
         self.arrsorted = []
 
-    def load_books(self, file):
+    def load_books(self, file, limit):
         '''Loads the array with books given a filename.
            Returns True if successfull, False otherwise.'''
 
@@ -36,7 +36,7 @@ class Books(object):
 
                     if n == 0:
                         continue
-                    if n == __booksloaded__:
+                    if n == limit:
                         break
                     id = row[0].strip('"')
                     title = row[1].strip('"')
@@ -122,14 +122,14 @@ class Books(object):
         """Print a book that has the title given in title."""
         for book in self.arr:
             if book.title.startswith(title):
-                print(book)
+                return book
 
     def disp_surname(self, surname):
         """Print a book based on the surname of the author."""
         for book in self.arr:
             surnames = [a.surname for a in book.authors]
             if surname in surnames:
-                print(book)
+                return book
 
     def binary_search(self, x, a = None, lo=0, hi=None):
         """Search for a book based on id.
@@ -199,4 +199,3 @@ class Book(object):
 
 
 __defaultfile__   = ""
-__booksloaded__ = 1500
