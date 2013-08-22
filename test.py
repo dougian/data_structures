@@ -86,13 +86,13 @@ for size in range(500,10000,500):
 for item in endresults:
 
     print("===============Times===============")
-    print("id Linear search:", endresults[item][0])
-    print("id Binary search : ",endresults[item][1] )
-    print("id avl search : ", endresults[item][4])
+    print("id Linear search: {}".format(endresults[item][0]))
+    print("id Binary search: {}".format(endresults[item][1]))
+    print("id avl search: {}".format(endresults[item][4]))
     print("----------------------------------")
-    print("string trie search : ",endresults[item][2])
-    print("string linear search: " ,endresults[item][3])
-    print("----------------------------------")
-    print("surname linear: ", endresults[item][5])
-    print("surname trie: ", endresults[item][6])
+    print("string trie search: {}".format(endresults[item][2]))
+    print("string linear search: {}" .format(endresults[item][3]))
+    print("---------------------------------")
+    print("surname linear: {}".format(endresults[item][5]))
+    print("surname trie: {}".format(endresults[item][6]))
 
