@@ -117,12 +117,14 @@ class Books(object):
         for book in self.arr:
             if book.id == id:
                 return book
+        return None
 
     def disp_title(self, title):
         """Print a book that has the title given in title."""
         for book in self.arr:
             if book.title.startswith(title):
                 return book
+        return None
 
     def disp_surname(self, surname):
         """Returns a list of books based on the surname of the author.
@@ -134,7 +136,10 @@ class Books(object):
             surnames = [a.lastname for a in book.authors]
             if surname in surnames:
                 l.append(book)
-        return l
+        if len(l) > 0 :
+            return l
+        else:
+            return None
 
     def binary_search(self, x, a = None, lo=0, hi=None):
         """Search for a book based on id.
@@ -152,7 +157,7 @@ class Books(object):
                 hi = mid
             else:
                 return a[mid]
-        return -1
+        return None
 
 
 class Author(object):

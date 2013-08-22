@@ -8,7 +8,7 @@ import AVL
 import pickle
 
 def checkResults(res1, res2, res3, res4, res5, res6):
-    return res1 == res2 == res3 == res4 == res5 == res6
+    return res1 == res2 == res3 == res4 and res5 == res6
 
 lines = 1500
 test_items = []
@@ -21,7 +21,7 @@ debug = False
 with open("sample.txt") as f:
     test_items = pickle.load(f)
 
-for size in range(500,1000,500):
+for size in range(500,10000,500):
     print("Size is ",size)
     b = bookservice.Books()
     b.load_books("books.csv",size)
@@ -44,7 +44,6 @@ for size in range(500,1000,500):
         start[1] = time.time()
         res2 = b.binary_search(iid)
         end[1] = time.time()
-
         start[2] = time.time()
         res3 = t.lookup(ttitle)
         end[2] = time.time()
@@ -62,6 +61,7 @@ for size in range(500,1000,500):
         if ll1 is not None:
             temp = [str(i) for i in ll1 if ll1]
             res5 = " ".join(temp)
+            if debug: print(res5)
         else:
             res5 = None
         end[5] = time.time()
@@ -71,6 +71,7 @@ for size in range(500,1000,500):
         if ll2 is not None:
             temp2 = [str(i) for i in ll2]
             res6 = " ".join(temp2)
+            if debug: print(res6)
         else:
             res6 = None
         end[6] = time.time()
@@ -82,7 +83,6 @@ for size in range(500,1000,500):
         else:
             endresults[size] = copy.deepcopy(avg)  #create a copy of avg and store it
 
-print("endresults:", endresults)
 for item in endresults:
 
     print("===============Times===============")
@@ -93,6 +93,6 @@ for item in endresults:
     print("string trie search : ",endresults[item][2])
     print("string linear search: " ,endresults[item][3])
     print("----------------------------------")
-    print("surname linear: ", endresults[i][5])
-    print("surname trie: ", endresults[i][6])
+    print("surname linear: ", endresults[item][5])
+    print("surname trie: ", endresults[item][6])
 
