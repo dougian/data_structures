@@ -1,4 +1,5 @@
 import copy
+import matplotlib.pyplot as plt
 import sys
 import time
 import os
@@ -21,7 +22,7 @@ debug = False
 with open("sample.txt") as f:
     test_items = pickle.load(f)
 
-for size in range(500,10000,500):
+for size in range(500,8500,500):
     print("Size is ",size)
     b = bookservice.Books()
     b.load_books("books.csv",size)
@@ -84,15 +85,26 @@ for size in range(500,10000,500):
             endresults[size] = copy.deepcopy(avg)  #create a copy of avg and store it
 
 for item in endresults:
+    if debug:
 
-    print("===============Times===============")
-    print("id Linear search: {}".format(endresults[item][0]))
-    print("id Binary search: {}".format(endresults[item][1]))
-    print("id avl search: {}".format(endresults[item][4]))
-    print("----------------------------------")
-    print("string trie search: {}".format(endresults[item][2]))
-    print("string linear search: {}" .format(endresults[item][3]))
-    print("---------------------------------")
-    print("surname linear: {}".format(endresults[item][5]))
-    print("surname trie: {}".format(endresults[item][6]))
+        print("===============Times===============")
+        print("id Linear search: {}".format(endresults[item][0]))
+        print("id Binary search: {}".format(endresults[item][1]))
+        print("id avl search: {}".format(endresults[item][4]))
+        print("----------------------------------")
+        print("string trie search: {}".format(endresults[item][2]))
+        print("string linear search: {}" .format(endresults[item][3]))
+        print("---------------------------------")
+        print("surname linear: {}".format(endresults[item][5]))
+        print("surname trie: {}".format(endresults[item][6]))
 
+sizes = endresults.keys()
+tmp = [0,0,0,0,0,0,0]
+for it in range(7):
+    tmp[it] = [endresults[i][it] for i in endresults.keys() ]
+
+plt.figure(1)
+plt.plot(sizes, tmp[0], 'go', sizes, tmp[1], 'bo', sizes, tmp[4], 'ro')
+plt.ylabel("Time in seconds")
+plt.xlabel("Database size")
+plt.show()
