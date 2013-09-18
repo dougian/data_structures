@@ -11,7 +11,6 @@ import pickle
 def checkResults(res1, res2, res3, res4, res5, res6):
     return res1 == res2 == res3 == res4 and res5 == res6
 
-lines = 1500
 test_items = []
 start = [0,0,0,0,0,0,0,0]
 end = [0,0,0,0,0,0,0]
@@ -85,7 +84,7 @@ for size in range(500,8500,500):
             endresults[size] = copy.deepcopy(avg)  #create a copy of avg and store it
 
 for item in endresults:
-    if debug:
+    if True:
 
         print("===============Times===============")
         print("id Linear search: {}".format(endresults[item][0]))
@@ -104,15 +103,30 @@ for it in range(7):
     tmp[it] = [endresults[i][it] for i in endresults.keys() ]
 
 plt.figure(1)
-plt.plot(sizes, tmp[0], 'go', sizes, tmp[1], 'bo', sizes, tmp[4], 'ro')
+#plt.plot(sizes, tmp[0], 'go', label="Linear id search", sizes, tmp[1], 'bo', label="Binary id search",sizes, tmp[4], 'ro', label="Avl search")
+p1 = plt.plot(sizes, tmp[0], 'bo')
+p2 = plt.plot(sizes, tmp[1], 'go')
+p3 = plt.plot(sizes, tmp[4], 'ro')
+p11 = plt.Circle(1, 1, fc="b")
+p12 = plt.Circle(1, 1, fc="g")
+p13 = plt.Circle(1, 1, fc="r")
+plt.legend([p11, p12, p13], ["Linear id search", "Binary id search", "Avl id search"])
 plt.ylabel("Time in seconds")
 plt.xlabel("Database size")
 plt.figure(2)
-plt.plot(sizes, tmp[2], 'go', sizes, tmp[3], 'bo')
+p4 = plt.plot(sizes, tmp[2], 'go')
+p5 = plt.plot(sizes, tmp[3], 'bo')
+p21 = plt.Circle(1, 1, fc="g")
+p22 = plt.Circle(1, 1, fc="b")
+plt.legend([p21, p22], ["Linear title search", "Trie title search"])
 plt.ylabel("Time in seconds")
 plt.xlabel("Database size")
 plt.figure(3)
-plt.plot(sizes, tmp[5], 'go', sizes, tmp[6], 'bo')
+p6 = plt.plot(sizes, tmp[5], 'go')
+p7 = plt.plot(sizes, tmp[6], 'bo')
+p31 = plt.Circle(1, 1, fc="g")
+p32 = plt.Circle(1, 1, fc="b")
+plt.legend([p31, p32], ["Linear authors search", "Trie authors search"])
 plt.ylabel("Time in seconds")
 plt.xlabel("Database size")
 plt.show()

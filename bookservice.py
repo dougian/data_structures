@@ -102,7 +102,7 @@ class Books(object):
             return False
 
     def delete_book(self, id):
-        """Delete a book based on id."""
+        """Delete a book based on id.Linear time."""
         for book in self.arr:
             if book.id == id:
                 self.arr.remove(id)
@@ -113,14 +113,14 @@ class Books(object):
             print (book)
 
     def disp_id(self, id):
-        """Print a book based on id."""
+        """Print a book based on id. Linear time."""
         for book in self.arr:
             if book.id == id:
                 return book
         return None
 
     def disp_title(self, title):
-        """Print a book that has the title given in title."""
+        """Print a book that has the title given in title. Linear time."""
         for book in self.arr:
             if book.title.startswith(title):
                 return book
@@ -129,7 +129,7 @@ class Books(object):
     def disp_surname(self, surname):
         """Returns a list of books based on the surname of the author.
          Will return ALL the books created by the author, whether alone
-         or collaborative."""
+         or collaborative. Time is again linear."""
 
         l = []
         for book in self.arr:
@@ -174,7 +174,8 @@ class Author(object):
 
 class Book(object):
                     """Book has an id, title, description and some Authors.
-                    Each book can also print itself. """
+                    Each book can also print itself.Books can be compaired with each other
+		    based on the id that they have."""
                     authors = []
                     def __init__(self, id, title, summary, authors):
                         super(Book, self).__init__()
