@@ -19,7 +19,7 @@ class Books(object):
 
         if not os.path.exists(file):
             print("The filename that you entered does not exist! ")
-            file = input("Please provide the correct filename")
+            file = raw_input("Please provide the correct filename")
 
         if file.endswith(".json"):
             try:
@@ -77,12 +77,10 @@ class Books(object):
     def add_book(self):
         '''An interractive way to add a new book to the list.'''
 
-        id = input("Please enter the id")
-        title = input("Please enter the title of the book")
-        descr = input("Now enter the description of the book")
-        authors_string = input("Finally enter the authors of the books," /
-                               + "separated by commas (e.g." /
-                               +"John Douratsos, Grigoris Douratsos")
+        id = raw_input("Please enter the id")
+        title = raw_input("Please enter the title of the book")
+        descr = raw_input("Now enter the description of the book")
+        authors_string = raw_input("Finally enter the authors of the book separated by commas (e.g. John Douratsos, Grigoris Douratsos")
         auth_list = authors_string.split(',')
         authors = []
 
@@ -93,7 +91,7 @@ class Books(object):
             authors.append(Author(name, surname))
 
         try:
-            self.arr.append(Book(name, surname, descr, authors))
+            self.arr.append(Book(id, title, descr, authors))
             self.arrsorted = sorted(self.arr, key = lambda x: x.id, reverse = False)
             return True
         except:
@@ -105,7 +103,8 @@ class Books(object):
         """Delete a book based on id.Linear time."""
         for book in self.arr:
             if book.id == id:
-                self.arr.remove(id)
+                self.arr.remove(book)
+		print("Book was deleted successfully")
 
     def disp_books(self):
         """Print all books in the database."""
