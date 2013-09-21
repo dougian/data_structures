@@ -1,0 +1,180 @@
+\documentclass[a4paper]{article}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{xcolor}
+\usepackage{textcomp}
+\setromanfont{Ubuntu}
+\setsansfont{Ubuntu}
+\setmonofont{Ubuntu}
+\setmainfont{Ubuntu}
+
+\usepackage{minted}
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{authblk}
+\usepackage{hyperref}
+\usepackage{mdframed}
+\usepackage{subfigure}
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Line spacing
+
+
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+
+\title{	
+\normalfont \normalsize 
+\textsc{Project Εξαμήνου} \\ [30pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Δομές Δεδομένων \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+\vspace*{4\baselineskip}
+}
+
+%\vspace*{4\baselineskip} % Whitespace between location/year and editors
+
+\author[]{Δουράτσος Ιωάννης  \thanks{\href{mailto:douratsos@ceid.upatras.gr}{douratsos@ceid.upatras.gr}} 4978 }
+\affil[]{Τμήμα Μηχανικών Η/Υ και Πληροφορικής, Πανεπιστήμιο Πατρών}
+
+
+
+\date{\normalsize\today} % Today's date or a custom date
+
+\begin{document}
+\newpage
+\maketitle % Print the title
+\newpage
+\tableofcontents
+\vspace*{1\baselineskip}
+\newpage
+\section{Γενικές Πληροφορίες}
+Η υλοποίηση του project έχει γίνει σε python 3.3. Απαραίτητη είναι και η ύπαρξη του matplotlib module καθώς αυτό αναλαμβάνει το plotting των διαγραμμάτων χρόνου.
+Αν εξαιρεθεί το plotting, οποιοσδήποτε python interpreter αρκεί.
+Για την ευκολότερη εκτέλεση των test, υπάρχουν δύο εναρκτήρια αρχεία: το setup.sh και το create.py. Το setup.sh αναλαμβάνει την εγκατάσταση των module που είναι αναγκαία και το create.py φτιάχνει μια μικρή βάση από βιβλία τα οποία και θα χρησιμοποιηθούν ως δείγμα για την αναζήτηση πάνω στη πραγματική βάση, δηλαδή το books.csv.
+Τα Book, Author και Books έχουν όλα υλοποιηθεί ως κλάσεις, ενώ συγκεκριμένα το Books περιέχει μια list από book και όλες τις κατάλληλες συναρτήσεις για αυτά.
+
+
+\section{Μέρος Α}
+Για αυτό το ερώτημα εκτυπώνεται ένα menu από το οποίο ο χρήστης μπορεί να διαλέξει την συνάρτηση που θέλει να εκτελέσει πάνω στα Books. Όπως είπαμε και πριν, όλα τα book βρίσκονται στη μνήμη σε μια list άπαξ και γίνουν load μέσω της επιλογής 1. 
+Η επιλογή αυτή απαιτεί ένα αρχείο σε μορφή csv, ενώ από default διαβάζει το αρχείο books.csv που βρίσκεται στον ίδιο φάκελο και είναι αυτό που είχε δωθεί στο forum του μαθήματος. Όπου χρειάζεται αναζήτηση, το κάνουμε με μια for πάνω στη λίστα ώστε να έχουμε γραμμικό χρόνο αναζήτησης.
+
+\section{Μέρος Β}
+Χρησιμοποιείται η κλασική μέθοδος δυαδικής αναζήτησης, η οποία είναι υλοποιημένη στη συνάρτηση binary_search μέσα στη κλάσση Books.
+
+\section{Μέρος Γ}
+Τα digital tries βρίσκονται υλοποιημένα στο module trie.py. Θα χρειαστούμε δύο διαφορετικά trie για το μέρος αυτό, ένα για να οργανώσουμε με βάση τον τίτλο και ένα για να οργανώσουμε τη βάση με βάση το επίθετο του συγγραφέα. Στην περίπτωση του δεύτερου, επιστρέφεται ως αποτέλεσμα μια λίστα από όλα τα βιβλία στα οποία αναφέρεται κάποιος ως συγγραφέας, είτε μόνος του είτε ως συνεργάτης με άλλους συγγραφείς.
+
+\section{Μέρος Γ}
+Τα digital tries βρίσκονται υλοποιημένα στο module trie.py. Θα χρειαστούμε δύο διαφορετικά trie για το μέρος αυτό, ένα για να οργανώσουμε με βάση τον τίτλο και ένα για να οργανώσουμε τη βάση με βάση το επίθετο του συγγραφέα. Στην περίπτωση του δεύτερου, επιστρέφεται ως αποτέλεσμα μια λίστα από όλα τα βιβλία στα οποία αναφέρεται κάποιος ως συγγραφέας, είτε μόνος του είτε ως συνεργάτης με άλλους συγγραφείς.
+
+\section{Μέρος Δ}
+Στο module AVL.py είναι υλοποιημένο ένα κομβοπροσανατολισμένο AVL δέντρο οργανωμένο με βάση τα ids των βιβλίων.Σε κάθε πράξη ελέγχεται η ζύγιση του υποδέντρου και αν έχει χαλάσει γίνονται κατάλληλες επαναζυγιστικές κινήσεις. Σε αυτο πρόσθέτουμε τη βάση των βιβλίων.
+
+\section{Μέρος Ε}
+Για το ερώτημα αυτό χρησιμοποιείται το αρχείο test.py σε συνδιασμό με το create.py. Το αρχείο create.py αρχικά δημιουργεί μια λίστα από βιβλία τα οποία και θα αναζητήσουμε και το αποθηκεύει μέσω του pickle module για εύκολη αργότερη χρήση.
+Έτσι στο test.py χρησιμοποιούμε αυτή τη λίστα από βιβλία δείγματα ώστε να αναζητήσουμε πάνω στη βάση των βιβλίων. Το μέγεθος της βάσης το μεταβάλουμε ώστε να δούμε την απόδοση των αλγορίθμων ανάλογα με το μέγεθος και για κάθε μέγεθος βάσης παίρνουμε το μέσο χρόνο αναζήτησης.
+Τελικά χρησιμοποιούμε το module matplotlib ώστε να οπτικοποιήσουμε αυτά τα αποτελέσματα και να είναι πιο εύκολο να καταλάβουμε την διαφορά της απόδοσης τους ανάλογα με το μέγεθος της βάσης που χρησιμοποιούμε.
+Παρατηρούμε ότι η απόδοση των γραμμικών αναζητήσεων πέφτει πολύ γρήγορα όσο μεγαλώνει το μέγεθος της βάσης, σε αντίθεση με τις αναζητήσεις που έχουν ως βάση AVL ή TRIES καθώς και την binary search. Αυτές διατηρούν πολύ καλή απόδοση ακόμη και παρά τη μεγάλη αύξηση του μεγέθους της βάσης των βιβλιών. Αυτό φαίνεται και στα screenshot που παρατήθονται και κάνουν σύγκριση των χρόνων αναζήτησης ανάμεσα στις διαφορετικές υλοποιήσεις.
+
+\caption{First Fit}
+\label{fig:figure}
+\end{figure}
+\newpage
+\subsubsection{Screenshots best fit}
+\begin{figure}[ht]
+\centering
+\subfigure[Αρχικά]{%
+	\includegraphics[width=0.45\columnwidth]{bf1}
+	\label{fig:subfigure1}}
+\quad
+\subfigure[Ύστερα από την εκκίνηση των προγραμμάτων]{%
+	\includegraphics[width=0.45\columnwidth]{bf2}
+	\label{fig:subfigure2}}
+\subfigure[Τερματισμός του programC]{%
+	\includegraphics[width=0.45\columnwidth]{bf3}
+	\label{fig:subfigure3}}
+\quad
+\subfigure[Εκκίνηση εκ νέου ενός programA]{%
+	\includegraphics[width=0.45\columnwidth]{bf4}
+	\label{fig:subfigure4}}
+
+
+\caption{Best Fit}
+\label{fig:figure}
+\end{figure}
+\newpage
+\subsubsection{Screenshots worst fit}
+\begin{figure}[ht]
+\centering
+\subfigure[Αρχικά]{%
+	\includegraphics[width=0.45\columnwidth]{wf1}
+	\label{fig:subfigure1}}
+\quad
+\subfigure[Ύστερα από την εκκίνηση των προγραμμάτων]{%
+	\includegraphics[width=0.45\columnwidth]{wf2}
+	\label{fig:subfigure2}}
+\subfigure[Τερματισμός του programC]{%
+	\includegraphics[width=0.45\columnwidth]{wf3}
+	\label{fig:subfigure3}}
+\quad
+\subfigure[Εκκίνηση εκ νέου ενός programA]{%
+	\includegraphics[width=0.45\columnwidth]{wf4}
+	\label{fig:subfigure4}}
+
+
+\caption{Worst Fit}
+\label{fig:figure}
+\end{figure}
+\newpage
+\section{Παρατηρήσεις}
+Όπως φαίνεται και στις εικόνες από την εκτέλεση των προγραμμάτων, χρησιμοποιήθηκε ένα λίγο αλλαγμένο script για τις μετρήσεις.
+Η σειρά εκτέλεσης δεν ήταν 
+
+\begin{minted}{bash}
+./programB &
+./programB &
+./programB &
+./programA &
+./programB &
+\end{minted}
+
+αλλά χρησιμοποιήθηκε το 
+
+\begin{minted}{bash}
+./programB &
+./programB &
+./programC &
+./programA &
+./programB &
+\end{minted}
+
+
+όπου programC ένα ακριβές αντίγραφο του programB. Αυτό ήταν αναγκαίο λόγω του ότι το minix για λόγους optiomisation δεν έδεινε στο programB 35 click αν κάποιο instance του
+programB εκτελούνταν ήδη. Αυτό είναι υλοποιημένο εσωτέρικά στο minix, (μπορεί πχ τα αρχεία να μοιράζονται το text κομμάτι της μνήμης) και είχε ως αποτέλεσμα το δεύτερο πρόγραμμα
+το οποίο και είναι αυτό που θα τερματίζαμε, να πιάνει χώρο μικρότερο από όσο θα έπρεπε και συνεπώς να αφήνει οπή μικρότερου μεγέθους από όσο θα περιμέναμε αρχικά.
+Με τη δημιουργία ενός αντιγράφου με όνομα programC δεν εμφανίζεται αυτό το φαινόμενο και μπορούμε έτσι να μελετήσουμε τη συμπεριφορά των αλγορίθμων μας.
+\end{document}
+
+
+
