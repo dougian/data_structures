@@ -1,5 +1,11 @@
 import copy
-import matplotlib.pyplot as plt
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("-p","--plot", help="Use matplotlib to plot performance graphs",
+                    action="store_true")
+args = parser.parse_args()
+if args.plot:
+	import matplotlib.pyplot as plt
 import sys
 import time
 import os
@@ -84,49 +90,49 @@ for size in range(500,8500,500):
             endresults[size] = copy.deepcopy(avg)  #create a copy of avg and store it
 
 for item in endresults:
-    if True:
-
-        print("===============Times===============")
-        print("id Linear search: {}".format(endresults[item][0]))
-        print("id Binary search: {}".format(endresults[item][1]))
-        print("id avl search: {}".format(endresults[item][4]))
-        print("----------------------------------")
-        print("string trie search: {}".format(endresults[item][2]))
-        print("string linear search: {}" .format(endresults[item][3]))
-        print("---------------------------------")
-        print("surname linear: {}".format(endresults[item][5]))
-        print("surname trie: {}".format(endresults[item][6]))
+	print("===============Times===============")
+	print("id Linear search: {}".format(endresults[item][0]))
+	print("id Binary search: {}".format(endresults[item][1]))
+	print("id avl search: {}".format(endresults[item][4]))
+	print("----------------------------------")
+	print("string trie search: {}".format(endresults[item][2]))
+	print("string linear search: {}" .format(endresults[item][3]))
+	print("---------------------------------")
+	print("surname linear: {}".format(endresults[item][5]))
+	print("surname trie: {}".format(endresults[item][6]))
 
 sizes = endresults.keys()
 tmp = [0,0,0,0,0,0,0]
 for it in range(7):
     tmp[it] = [endresults[i][it] for i in endresults.keys() ]
+if args.plot:
+	plt.figure(1)
+	p1 = plt.plot(sizes, tmp[0], 'bo')
+	p2 = plt.plot(sizes, tmp[1], 'go')
+	p3 = plt.plot(sizes, tmp[4], 'ro')
+	p11 = plt.Circle(1, 1, fc="b")
+	p12 = plt.Circle(1, 1, fc="g")
+	p13 = plt.Circle(1, 1, fc="r")
+	plt.legend([p11, p12, p13], ["Linear id search", "Binary id search", "Avl id search"])
+	plt.ylabel("Time in seconds")
+	plt.xlabel("Database size")
 
-plt.figure(1)
-#plt.plot(sizes, tmp[0], 'go', label="Linear id search", sizes, tmp[1], 'bo', label="Binary id search",sizes, tmp[4], 'ro', label="Avl search")
-p1 = plt.plot(sizes, tmp[0], 'bo')
-p2 = plt.plot(sizes, tmp[1], 'go')
-p3 = plt.plot(sizes, tmp[4], 'ro')
-p11 = plt.Circle(1, 1, fc="b")
-p12 = plt.Circle(1, 1, fc="g")
-p13 = plt.Circle(1, 1, fc="r")
-plt.legend([p11, p12, p13], ["Linear id search", "Binary id search", "Avl id search"])
-plt.ylabel("Time in seconds")
-plt.xlabel("Database size")
-plt.figure(2)
-p4 = plt.plot(sizes, tmp[2], 'go')
-p5 = plt.plot(sizes, tmp[3], 'bo')
-p21 = plt.Circle(1, 1, fc="g")
-p22 = plt.Circle(1, 1, fc="b")
-plt.legend([p21, p22], ["Linear title search", "Trie title search"])
-plt.ylabel("Time in seconds")
-plt.xlabel("Database size")
-plt.figure(3)
-p6 = plt.plot(sizes, tmp[5], 'go')
-p7 = plt.plot(sizes, tmp[6], 'bo')
-p31 = plt.Circle(1, 1, fc="g")
-p32 = plt.Circle(1, 1, fc="b")
-plt.legend([p31, p32], ["Linear authors search", "Trie authors search"])
-plt.ylabel("Time in seconds")
-plt.xlabel("Database size")
-plt.show()
+	plt.figure(2)
+	p4 = plt.plot(sizes, tmp[2], 'go')
+	p5 = plt.plot(sizes, tmp[3], 'bo')
+	p21 = plt.Circle(1, 1, fc="g")
+	p22 = plt.Circle(1, 1, fc="b")
+	plt.legend([p21, p22], ["Linear title search", "Trie title search"])
+	plt.ylabel("Time in seconds")
+	plt.xlabel("Database size")
+
+	plt.figure(3)
+	p6 = plt.plot(sizes, tmp[5], 'go')
+	p7 = plt.plot(sizes, tmp[6], 'bo')
+	p31 = plt.Circle(1, 1, fc="g")
+	p32 = plt.Circle(1, 1, fc="b")
+	plt.legend([p31, p32], ["Linear authors search", "Trie authors search"])
+	plt.ylabel("Time in seconds")
+	plt.xlabel("Database size")
+
+	plt.show()
