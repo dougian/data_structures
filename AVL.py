@@ -433,7 +433,6 @@ class AVLTree():
         for _book in books:
             self.insert(_book)
 
-        #print "AVL Tree was created successfully."
 
 
 

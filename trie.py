@@ -57,10 +57,17 @@ class Trie:
                 yield node
 
     def build_tree(self, arr):
+	"""Creates a trie from the array given using title as the key.
+	"""
         for book in arr:
             self.add(book.title, book)
 
     def build_authors(self, arr):
+	"""Creates a trie from the array given using the author of
+	each book as a key. The value stored is a list of all the books
+	written by that author.
+	"""
+
         s = []  #a list of surname-book tuples
         for b in arr:
             for a in b.authors:

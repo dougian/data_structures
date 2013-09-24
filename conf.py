@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
-# Data Structures 2013 documentation build configuration file, created by
-# sphinx-quickstart on Mon Aug 19 02:55:56 2013.
+# Data structures documentation build configuration file, created by
+# sphinx-quickstart on Tue Sep 24 05:39:40 2013.
 #
 # This file is execfile()d with the current directory set to its containing dir.
 #
@@ -16,7 +16,8 @@ import sys, os
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-sys.path.append('/home/dougian/Desktop/proj')
+#sys.path.insert(0, os.path.abspath('.'))
+sys.path.insert(0,os.path.abspath('.'))
 # -- General configuration -----------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -39,7 +40,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Data Structures 2013'
+project = u'Data structures'
 copyright = u'2013, John Douratsos'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -84,9 +85,6 @@ pygments_style = 'sphinx'
 
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
-
-# If true, keep warnings as "system message" paragraphs in the built documents.
-#keep_warnings = False
 
 
 # -- Options for HTML output ---------------------------------------------------
@@ -166,7 +164,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'DataStructures2013doc'
+htmlhelp_basename = 'Datastructuresdoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -185,7 +183,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'DataStructures2013.tex', u'Data Structures 2013 Documentation',
+  ('index', 'Datastructures.tex', u'Data structures Documentation',
    u'John Douratsos', 'manual'),
 ]
 
@@ -215,7 +213,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'datastructures2013', u'Data Structures 2013 Documentation',
+    ('index', 'datastructures', u'Data structures Documentation',
      [u'John Douratsos'], 1)
 ]
 
@@ -229,8 +227,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'DataStructures2013', u'Data Structures 2013 Documentation',
-   u'John Douratsos', 'DataStructures2013', 'One line description of project.',
+  ('index', 'Datastructures', u'Data structures Documentation',
+   u'John Douratsos', 'Datastructures', 'One line description of project.',
    'Miscellaneous'),
 ]
 
@@ -242,8 +240,3 @@ texinfo_documents = [
 
 # How to display URL addresses: 'footnote', 'no', or 'inline'.
 #texinfo_show_urls = 'footnote'
-
-# If true, do not generate a @detailmenu in the "Top" node's menu.
-#texinfo_no_detailmenu = False
-
-sys.path.insert(0,"~/Desktop/proj")

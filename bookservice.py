@@ -6,7 +6,8 @@ import csv
 
 class Books(object):
     """Books contains a list of all the books loaded.
-       It also contains functions to add, delete, search books via multiple ways."""
+       It also contains functions to add, delete, search books via multiple ways.
+    """
 
     def __init__(self):
         super(Books, self).__init__()
@@ -14,8 +15,9 @@ class Books(object):
         self.arrsorted = []
 
     def load_books(self, file, limit):
-        '''Loads the array with books given a filename.
-           Returns True if successfull, False otherwise.'''
+        """Loads the array with books given a filename.
+           Returns True if successfull, False otherwise.
+	"""
 
         if not os.path.exists(file):
             print("The filename that you entered does not exist! ")
@@ -104,6 +106,7 @@ class Books(object):
         for book in self.arr:
             if book.id == id:
                 self.arr.remove(book)
+            	self.arrsorted = sorted(self.arr, key = lambda x: x.id, reverse = False)
 		print("Book was deleted successfully")
 
     def disp_books(self):
