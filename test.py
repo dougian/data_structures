@@ -24,8 +24,12 @@ avg = [0,0,0,0,0,0,0]
 endresults = {}
 debug = False
 
-with open("sample.txt") as f:
-    test_items = pickle.load(f)
+try:
+    with open("sample.txt") as f:
+        test_items = pickle.load(f)
+except IOError:
+    print("sample.txt does not exist, please run create.py first!")
+    exit()
 
 for size in range(500,8500,500):
     print("Size is {}".format(size))
